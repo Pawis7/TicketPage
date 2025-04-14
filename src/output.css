@@ -201,9 +201,6 @@
   .static {
     position: static;
   }
-  .sticky {
-    position: sticky;
-  }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
@@ -406,6 +403,12 @@
   }
   .bg-\[url\(\'\.\.\/assets\/images\/background-mobile\.png\'\)\] {
     background-image: url('../assets/images/background-mobile.png');
+  }
+  .bg-\[url\(\'\.\/assets\/images\/background-mobile\.png\'\)\] {
+    background-image: url('./assets/images/background-mobile.png');
+  }
+  .bg-\[url\(\'\/assets\/images\/background-mobile\.png\'\)\] {
+    background-image: url('/assets/images/background-mobile.png');
   }
   .from-\[\#F57463\] {
     --tw-gradient-from: #F57463;
@@ -713,6 +716,16 @@
   .md\:bg-\[url\(\'\.\.\/assets\/images\/background-desktop\.png\'\)\] {
     @media (width >= 48rem) {
       background-image: url('../assets/images/background-desktop.png');
+    }
+  }
+  .md\:bg-\[url\(\'\.\/assets\/images\/background-desktop\.png\'\)\] {
+    @media (width >= 48rem) {
+      background-image: url('./assets/images/background-desktop.png');
+    }
+  }
+  .md\:bg-\[url\(\'\/assets\/images\/background-desktop\.png\'\)\] {
+    @media (width >= 48rem) {
+      background-image: url('/assets/images/background-desktop.png');
     }
   }
 }
