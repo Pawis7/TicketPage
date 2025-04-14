@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link href="./output.css" rel="stylesheet" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Conference ticket generator</title>
+  </head>
+  <body
+    class="overflow-y-auto w-full bg-[url('../assets/images/background-mobile.png')] relative md:bg-[url('../assets/images/background-desktop.png')] overflow-hidden bg-no-repeat bg-cover bg-center min-h-screen text-white"
+  >
+    <img
+      src="../assets/images/pattern-lines.svg"
+      alt="lines"
+      class="object-cover sm:px-16 absolute top-0 left-0 w-screen h-screen overflow-hidden -z-10 pointer-events-none"
+    />
+    <img
+      src="../assets/images/pattern-squiggly-line-top.svg"
+      alt="topLine"
+      class="absolute sm:top-2 right-0 overflow-hidden -z-10 pointer-events-none sm:h-100 sm:w-100 h-40 w-40 top-0"
+    />
+    <img
+      src="../assets/images/pattern-circle.svg"
+      alt="bottomCircle"
+      class="absolute bottom-50 right-0 sm:bottom-85 sm:right-1/4 overflow-hidden -z-10 pointer-events-none sm:h-46 sm:w-46 h-30 w-30"
+    />
+    <img
+      src="../assets/images/pattern-circle.svg"
+      alt="topCircle"
+      class="absolute sm:-top-20 sm:left-15 overflow-hidden -z-10 pointer-events-none sm:h-46 sm:w-46 h-30 w-30 -top-10 -left-10"
+    />
+    <img
+      src="../assets/images/pattern-squiggly-line-bottom-desktop.svg"
+      alt="lineBDesktop"
+      class="hidden sm:flex absolute bottom-0 left-0 overflow-hidden -z-10 pointer-events-none"
+    />
+    <img
+      src="../assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg"
+      alt="lineBMobile"
+      class="sm:hidden absolute bottom-0 left-0 overflow-hidden -z-10 pointer-events-none"
+    />
+
+    <nav class="pt-8 p-4 flex items-center justify-center">
+      <img src="../assets/images/logo-full.svg" alt="Logo" class="h-6" />
+    </nav>
+
+    <!-- Form starts -->
+    <section
+      id="form"
+      class="font-inconsolata py-3 sm:py-8 items-center flex flex-col justify-center"
+    >
+      <article
+        class="flex flex-col items-center gap-1 max-w-sm sm:max-w-3xl mx-auto"
+      >
+        <h1 class="text-2xl sm:text-5xl font-bold text-center px-4">
+          Your Journey to Coding Conf 2025 Starts Here!
+        </h1>
+        <p class="py-4 text-sm sm:text-lg text-gray-400 text-center max-w-2xs">
+          Secure your spot at next year's biggest coding conference.
+        </p>
+      </article>
+
+      <form class="flex flex-col gap-4 sm:gap-5 sm:px-10 px-8">
+        <div class="gap-2 flex flex-col">
+          <label>Upload Avatar</label>
+          <div
+            id="dropzone"
+            class="relative flex flex-col items-center justify-center sm:w-100 p-4 border-2 border-dashed border-white/40 rounded-lg cursor-pointer hover:border-white/70 transition group bg-white/10 gap-2"
+          >
+            <img
+              src="../assets/images/icon-upload.svg"
+              alt="uploadIcon"
+              class="border-1 bg-white/20 border-white/20 rounded-lg h-8 w-8 p-1"
+            />
+            <input
+              type="file"
+              name="avatar"
+              id="avatar"
+              accept=".jpg,.jpeg,.png"
+              class="absolute inset-0 opacity-0 cursor-pointer"
+              required
+            />
+
+            <p id="fileName" class="text-gray-400 text-sm font-semibold">
+              Drag and drop or click to upload
+            </p>
+          </div>
+          <label for="" class="text-xs text-gray-400">
+            ⓘ Upload your photo (JPG or PNG, max size: 500KB).</label
+          >
+        </div>
+        <div class="gap-2 flex flex-col">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder=""
+            class="border-2 border-white/20 rounded-lg p-2 bg-white/10 text-white hover:border-white/70 transition focus:border-white/70"
+            required
+          />
+        </div>
+        <div class="gap-2 flex flex-col">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            placeholder="example@email.com"
+            class="border-2 border-white/20 rounded-lg p-2 bg-white/10 text-white hover:border-white/70 transition focus:border-white/70"
+            required
+          />
+        </div>
+        <div class="gap-2 flex flex-col">
+          <label for="github">GitHub Username</label>
+          <input
+            type="username"
+            name="github"
+            id="github"
+            pattern="^@([a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38})$"
+            placeholder="@yourusername"
+            class="border-2 border-white/20 rounded-lg p-2 bg-white/10 text-white hover:border-white/70 transition focus:border-white/70"
+            required
+          />
+        </div>
+        <button
+          class="bg-[#F57463] rounded-lg p-3 text-indigo-950 font-bold hover:bg-[#F3543F] transition"
+          type="submit"
+        >
+          Generate My ticket
+        </button>
+      </form>
+    </section>
+    <section
+      id="ticket"
+      class="font-inconsolata py-3 sm:py-8 items-center flex-col justify-center hidden"
+    >
+      <article class="flex flex-col items-center gap-1 mx-auto">
+        <h1
+          class="text-3xl sm:text-5xl font-bold text-center px-4 max-w-lg sm:max-w-3xl"
+        >
+          Congrats,
+          <span
+            id="ticketName"
+            class="bg-gradient-to-r from-[#F57463] to-white text-transparent bg-clip-text"
+            >Example Name!</span
+          >Your ticket is ready .
+        </h1>
+        <p
+          class="max-w-sm sm:max-w-sm py-4 text-xl sm:text-lg text-gray-400 text-center"
+        >
+          We´ve emailed your ticket to
+          <span id="ticketEmail" class="text-[#F57463]">example@mail.com</span>
+          and will send uptdates in the run up to the event.
+        </p>
+      </article>
+
+      <section class="py-8 sm:py-20">
+        <div class="relative w-full max-w-xl mx-auto p-4">
+          <!-- Imagen del boleto -->
+          <img
+            src="../assets/images/pattern-ticket.svg"
+            alt="boleto"
+            class="w-full object-cover"
+          />
+
+          <!-- Contenido encima -->
+          <div class="absolute inset-0 p-8 flex flex-col gap-6 sm:p-10">
+            <!-- Header -->
+            <header class="flex flex-col items-start gap-1">
+              <img
+                src="../assets/images/logo-full.svg"
+                alt="logo"
+                class="h-6 sm:h-10"
+              />
+              <p class="text-xs text-gray-300">Jan 31, 2025 / Austin, TX</p>
+            </header>
+
+            <!-- Datos usuario -->
+            <div class="flex gap-3 items-center mt-auto">
+              <img
+                src="../assets/images/image-avatar.jpg"
+                alt="avatar"
+                class="h-12 w-12 rounded-lg sm:h-16 sm:w-16"
+                id="ticketAvatar"
+              />
+              <div>
+                <h2
+                  id="onTicketName"
+                  class="text-white text-lg font-bold sm:text-2xl"
+                >
+                  Name Example!
+                </h2>
+                <div class="flex items-center gap-1">
+                  <img
+                    src="../assets/images/icon-github.svg"
+                    alt="GHIcon"
+                    class="h-4 w-4 sm:h-6 sm:w-6"
+                  />
+                  <p id="onTicketGH" class="text-gray-300 sm:text-lg">
+                    @userExample
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class=" bottom-0 w-full py-4 text-xs sm:text-lg">
+      <div class="justify-center flex items-center">
+        Challenge by&nbsp;
+        <a
+          target="_blank"
+          href="https://www.frontendmentor.io?ref=challenge"
+          class="text-blue-400 hover:text-blue-500"
+        >
+          Frontend Mentor</a
+        >. Coded by&nbsp;<a
+          target="_blank"
+          href="https://github.com/Pawis7"
+          class="text-blue-400 hover:text-blue-500"
+          >Pawis</a
+        >.
+      </div>
+    </footer>
+
+    <script>
+      const avatarInput = document.getElementById("avatar");
+      const fileName = document.getElementById("fileName");
+
+      avatarInput.addEventListener("change", () => {
+        const file = avatarInput.files[0];
+        if (file) {
+          fileName.textContent = file.name;
+        } else {
+          fileName.textContent = "Drag and drop or click to upload";
+        }
+      });
+
+      const form = document.getElementById("form");
+      const ticket = document.getElementById("ticket");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const avatar = document.getElementById("avatar").files[0];
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const github = document.getElementById("github").value;
+        const ticketAvatar = document.getElementById("ticketAvatar");
+
+        const ticketName = document.getElementById("ticketName");
+        const ticketEmail = document.getElementById("ticketEmail");
+        const onTicketGH = document.getElementById("onTicketGH");
+        const onTicketName = document.getElementById("onTicketName");
+
+        if (avatar) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            ticketAvatar.src = e.target.result;
+          };
+          reader.readAsDataURL(avatar);
+        }
+
+        ticketName.textContent = name + "! ";
+        ticketEmail.textContent = email + " ";
+        onTicketGH.textContent = github;
+        onTicketName.textContent = name;
+
+        form.classList.add("hidden");
+        ticket.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>
