@@ -231,7 +231,7 @@
           target="_blank"
           href="https://github.com/Pawis7"
           class="text-blue-400 hover:text-blue-500"
-          >Pawis</a
+          >Yves</a
         >.
       </div>
     </footer>
@@ -239,6 +239,56 @@
     <script>
       const avatarInput = document.getElementById("avatar");
       const fileName = document.getElementById("fileName");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const githubInput = document.getElementById("github");
+
+      const STORAGE_KEY = "ticketFormData";
+
+      function saveFormDraft() {
+        const formData = {
+          name: nameInput.value,
+          email: emailInput.value,
+          github: githubInput.value,
+        };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+      }
+
+      function restoreFormDraft() {
+        const rawDraft = localStorage.getItem(STORAGE_KEY);
+        if (!rawDraft) {
+          return;
+        }
+
+        try {
+          const draft = JSON.parse(rawDraft);
+
+          if (draft.name) {
+            nameInput.value = draft.name || "";
+          }
+
+          if (draft.email) {
+            emailInput.value = draft.email || "";
+          }
+
+          if (draft.github) {
+            githubInput.value = draft.github || "";
+          }
+        } catch {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      }
+
+      function clearFormDraft() {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+
+      restoreFormDraft();
+
+      nameInput.addEventListener("input", saveFormDraft);
+      emailInput.addEventListener("input", saveFormDraft);
+      githubInput.addEventListener("input", saveFormDraft);
 
       avatarInput.addEventListener("change", () => {
         const file = avatarInput.files[0];
@@ -256,9 +306,9 @@
         event.preventDefault();
 
         const avatar = document.getElementById("avatar").files[0];
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const github = document.getElementById("github").value;
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const github = githubInput.value;
         const ticketAvatar = document.getElementById("ticketAvatar");
 
         const ticketName = document.getElementById("ticketName");
@@ -281,6 +331,7 @@
 
         form.classList.add("hidden");
         ticket.classList.remove("hidden");
+        clearFormDraft();
       });
     </script>
   </body>
